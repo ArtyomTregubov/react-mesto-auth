@@ -1,0 +1,9 @@
+.header__enter {
+    font-size: 18px;
+    color: #a9a9a9;
+    text-decoration: none;
+}
+ 
+.header__enter:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.sign-up__save-button {
+    width: 358px;
+    height: 50px;
+    margin-top: 216px;
+}
+
+.sign-up__save-button:hover {
+    cursor: pointer;
+}

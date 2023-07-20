@@ -1,0 +1,21 @@
+.page {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern";
+    max-width: min(100%, 880px);
+    font-family: 'Inter', 'Arial', sans-serif;
+    color: white;
+    padding: 0 30px;
+    margin: 0 auto;
+  }
+  
+  @media screen and (max-width: 635px) {
+    .page {
+      padding: 0;
+    }
+  }

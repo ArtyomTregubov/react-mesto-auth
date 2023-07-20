@@ -1,0 +1,6 @@
+.gallery__number {
+    display: grid;
+    justify-items: center;
+    gap: 0px;
+    color: black;
+}

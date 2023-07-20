@@ -1,0 +1,15 @@
+.popup-registration__logo {
+    margin-left: 155px;
+    margin-right: 155px;
+    margin-top: 60px;
+
+}
+
+@media screen and (max-width: 635px) {
+    .popup-registration__logo {
+        margin-left: 80px;
+        margin-right: 80px;
+        margin-top: 50px;
+    
+    }
+  }

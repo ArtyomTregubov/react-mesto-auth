@@ -1,0 +1,14 @@
+.gallery__like {
+    height:25px;
+    width: 22px;
+    border: none;
+    background-color: transparent;
+    background-image: url("../../../images/heart-white.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .gallery__like:hover {
+    cursor: pointer;
+    opacity: .5;
+  }

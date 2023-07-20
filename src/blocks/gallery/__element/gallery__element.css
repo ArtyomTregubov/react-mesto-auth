@@ -1,0 +1,7 @@
+.gallery__element {
+    background-color: white;
+    border-radius: 10px;
+    display: grid;
+    width: min(100%, 282px);
+    position: relative;
+  }

@@ -1,0 +1,22 @@
+.profile__info-description {
+    line-height: 1.2;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    margin: 0;
+    grid-column: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 290px;
+  }
+  
+  @media screen and (max-width: 635px) {
+    .profile__info-description {
+      font-size: 14px;
+      max-width: 227px;
+      align-self: end;
+      justify-self: center;
+      padding-left: 24px;
+    }
+  }
