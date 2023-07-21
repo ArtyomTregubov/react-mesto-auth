@@ -1,7 +1,6 @@
 import React from "react";
-import AUTH from "../utils/auth";
 
-export default function Login({ title, buttonText, handleLoggedIn }) {
+export default function Login({ onLogin, title, buttonText }) {
   const [formValue, setFormValue] = React.useState({
     email: "",
     password: "",
@@ -21,18 +20,7 @@ export default function Login({ title, buttonText, handleLoggedIn }) {
     if (!formValue.email || !formValue.password) {
       return;
     }
-    try {
-      const userInfo = await AUTH.signin({
-        password: formValue.password,
-        email: formValue.email,
-      });
-      if (userInfo.token) localStorage.setItem("token", userInfo.token);
-      localStorage.setItem("email", formValue.email);
-      setFormValue({ email: "", password: "" });
-      handleLoggedIn(true);
-    } catch (err) {
-      console.log(err);
-    }
+    await onLogin(formValue.password, formValue.email, setFormValue);
   };
 
   return (
@@ -43,7 +31,6 @@ export default function Login({ title, buttonText, handleLoggedIn }) {
         action="#"
         name="add-form"
         className="sign-up__main"
-        noValidate
       >
         <fieldset className="sign-up__info">
           <input

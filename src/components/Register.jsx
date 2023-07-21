@@ -1,10 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import AUTH from "../utils/auth";
+import { Link } from "react-router-dom";
 
 export default function Register({
-  onInfoTooltip,
-  setStatus,
+  onRegister,
   title,
   buttonText,
   question,
@@ -26,18 +24,7 @@ export default function Register({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formValue.password && formValue.email) {
-      try {
-        await AUTH.signup({
-          password: formValue.password,
-          email: formValue.email,
-        });
-        setStatus(false);
-        onInfoTooltip();
-      } catch (err) {
-        setStatus(true);
-        onInfoTooltip();
-        console.log(err);
-      }
+      await onRegister(formValue.password, formValue.email);
     }
   };
 
@@ -49,7 +36,6 @@ export default function Register({
         action="#"
         name="add-form"
         className="sign-up__main"
-        noValidate
       >
         <fieldset className="sign-up__info">
           <input

@@ -11,12 +11,15 @@ export default function Header({ text, email, link, onLogOut }) {
       </a>
       <div className="header__kontainer">
         <span className="header__post">{email}</span>
-          {onLogOut ? <Link to={link} className="header__enter" onClick={onLogOut}>
-          {text}
-        </Link> : <Link to={link} className="header__enter">
-          {text}
-        </Link>}
-        {/*<span className="header__enter">{text}</span>*/}
+        {onLogOut ? (
+          <Link to={link} className="header__enter" onClick={onLogOut}>
+            {text}
+          </Link>
+        ) : (
+          <Link to={link} className="header__enter">
+            {text}
+          </Link>
+        )}
       </div>
     </header>
   );

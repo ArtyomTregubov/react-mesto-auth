@@ -26,7 +26,6 @@ export default function PopupWithForm({
           action="#"
           name="add-form"
           className="popup__main"
-          noValidate
           onSubmit={onSubmit}
         >
           <fieldset className="popup__info">{children}</fieldset>

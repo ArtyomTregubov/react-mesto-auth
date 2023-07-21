@@ -33,6 +33,16 @@ function App() {
 
   const navigate = useNavigate();
 
+  async function getUserInfo() {
+    const userInfo = await API.getUserInfo();
+    setCurrentUser(userInfo);
+  }
+
+  async function getCards() {
+    const initialCards = await API.getInitialCards();
+    setCards(initialCards);
+  }
+
   React.useEffect(() => {
     (async () => {
       try {
@@ -40,28 +50,14 @@ function App() {
         if (userInfo) {
           localStorage.setItem("email", userInfo.data.email);
           setLoggedIn(true);
+          await getUserInfo();
+          await getCards();
         }
       } catch (err) {
         console.log(err);
       }
     })();
-    (async () => {
-      try {
-        const userInfo = await API.getUserInfo();
-        setCurrentUser(userInfo);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-    (async () => {
-      try {
-        const initialCards = await API.getInitialCards();
-        setCards(initialCards);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
+  }, [loggedIn]);
 
   function handleOpenInfoTooltip() {
     openInfoTooltip(true);
@@ -157,6 +153,40 @@ function App() {
     setLoggedIn(true);
   }
 
+  async function handleRegister(password, email) {
+    try {
+      await AUTH.signup({
+        password,
+        email,
+      });
+      setStatus(false);
+      handleOpenInfoTooltip();
+    } catch (err) {
+      setStatus(true);
+      handleOpenInfoTooltip();
+      console.log(err);
+    }
+  }
+
+  async function handleLogin(password, email, callback) {
+    try {
+      const userInfo = await AUTH.signin({
+        password,
+        email,
+      });
+      if (userInfo.token) {
+        localStorage.setItem("token", userInfo.token);
+        localStorage.setItem("email", email);
+        callback({ email: "", password: "" });
+        handleLogIn();
+      }
+    } catch (err) {
+      setStatus(true);
+      handleOpenInfoTooltip();
+      console.log(err);
+    }
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -205,7 +235,7 @@ function App() {
                     onClose={closeInfoTooltip}
                   />
                   <Register
-                    onInfoTooltip={handleOpenInfoTooltip}
+                    onRegister={handleRegister}
                     setStatus={setStatus}
                     title={"Регистрация"}
                     buttonText={"Зарегистрироваться"}
@@ -224,10 +254,15 @@ function App() {
               ) : (
                 <>
                   <Header text={"Регистрация"} email={""} link={"/signup"} />
+                  <InfoTooltip
+                    isOpen={isInfoTooltipOpen}
+                    isError={isError}
+                    onClose={closeInfoTooltip}
+                  />
                   <Login
+                    onLogin={handleLogin}
                     title={"Вход"}
                     buttonText={"Войти"}
-                    handleLoggedIn={handleLogIn}
                   />
                 </>
               )

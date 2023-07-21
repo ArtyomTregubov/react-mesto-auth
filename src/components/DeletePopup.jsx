@@ -6,7 +6,7 @@ export default function DeletePopup() {
       <div className="popup__overlay">
         <button className="popup__close" type="button"></button>
         <h2 className="popup__title">Вы уверены?</h2>
-        <form action="#" name="add-form" className="popup__main" noValidate>
+        <form action="#" name="add-form" className="popup__main">
           <fieldset className="popup__info">
             <button
               className="popup__save-button popup__delete-button"
